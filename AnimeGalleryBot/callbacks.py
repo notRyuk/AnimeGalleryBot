@@ -4,7 +4,7 @@ from AnimeGalleryBot.gogoanime import gogoanime as gogo
 
 try:
     @bot.on(events.CallbackQuery)
-    def callback_for_anime(event):
+    async def callback_for_anime(event):
         data = event.data.decode('utf-8')
         if 'lt:' in data:
             split_data = data.split(":")
@@ -125,7 +125,7 @@ try:
         elif 'split:' in data:
             await send_details(event, data)
 
-    def send_details(event, id):
+    async def send_details(event, id):
         if 'split:' in id:
             split_id = id.split(":")
             x = gogo.get_search_results(split_id[1])
